@@ -26,21 +26,42 @@ document.addEventListener("DOMContentLoaded", function () {
   // Muestra la información del navegador
   btnInfo.addEventListener("click", function () {
     informacionNavegador();
+    function informacionNavegador(){
+      let resultado = "";
+      resultado += "Nombre Navegador: " + navigator.appName;
+      resultado += "\nSistema Operativo: " + navigator.platform;
+      resultado += "\nVersión navegador: " + navigator.appVersion;
+      resultado += "\nIdioma navegador: " +navigator.language;
+
+      alert(resultado);
+      
+    }
   });
 
   // Redirecciona a la URL introducida en el input a la nueva ventana mywindow
   btnUrl.addEventListener("click", function () {
     // si la URL no está vacía, redireccionar a www.educa.jcyl.es"
+    if(url.value == ""){
+      myWindow = window.open("https://www.educa.jcyl.es","educacyl","toolbar=yes,location=no,resizable=no,height=300");
+    }else{
+      myWindow = window.open(url.value, "Nueva ventana", "toolbar=yes,location=no,resizable=no,height=300");
+    }
   });
 
   // Cierra la ventana emergente mywindow
-  btnClose.addEventListener("click", function () {});
+  btnClose.addEventListener("click", function () {
+    myWindow.close();
+  });
 
   // Retroceder en la historia del navegador
-  btnBack.addEventListener("click", function () {});
+  btnBack.addEventListener("click", function () {
+    history.back();
+  });
 
   // Avanzar en la historia del navegador
-  btnForward.addEventListener("click", function () {});
+  btnForward.addEventListener("click", function () {
+    history.forward();
+  });
 
   // Temoporizador
   btnStartTimer.addEventListener("click", function () {
@@ -61,8 +82,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Función para actualizar el tamaño de la pantalla
 function updateScreenSize() {
-  document.getElementById("width").textContent = 0;
-  document.getElementById("height").textContent = 0;
+  document.getElementById("width").textContent = window.innerWidth;
+  document.getElementById("height").textContent = window.innerHeight;
 }
 
 // Evento de cambio de pantalla
