@@ -10,6 +10,9 @@ var timer;
 // Número de segundos transcurridos
 var count = 0;
 
+// Contenido del span "counter"
+var counter = document.getElementById("counter");
+
 document.addEventListener("DOMContentLoaded", function () {
   // Variables botones
   const btnInfo = document.getElementById("btnInfo");
@@ -41,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Redirecciona a la URL introducida en el input a la nueva ventana mywindow
   btnUrl.addEventListener("click", function () {
     // si la URL no está vacía, redireccionar a www.educa.jcyl.es"
-    if(url.value == ""){
+    if(url.value === ""){
       myWindow = window.open("https://www.educa.jcyl.es","educacyl","toolbar=yes,location=no,resizable=no,height=300");
     }else{
       myWindow = window.open(url.value, "Nueva ventana", "toolbar=yes,location=no,resizable=no,height=300");
@@ -66,10 +69,15 @@ document.addEventListener("DOMContentLoaded", function () {
   // Temoporizador
   btnStartTimer.addEventListener("click", function () {
     // Iniciar el temporizador timer cada segundo para poner en counter el valor de segundos transcurridos
+    timer = setInterval(() => {
+      count++;
+      counter.textContent = count;
+    }, 1000);
   });
 
   btnStopTimer.addEventListener("click", function () {
     // Detener el temporizador timer
+    clearInterval(timer);
   });
 
   btnRedirection.addEventListener("click", function () {
@@ -91,11 +99,14 @@ function updateScreenSize() {
 window.onresize = updateScreenSize;
 
 // Eventos de conexión a internet
-/*
-window.addEventListener('COMPLETAR', () => {
-    document.getElementById('status').textContent = 'Desconectado';
+
+window.addEventListener('load', (event) => {
+    const statusDisplay = document.getElementById("status");
+
+    statusDisplay.textContent = navigator.onLine?"Conectado" : "Desconectado";
+
   });
-*/
+
 
 /*
   window.addEventListener('COMPLETAR', () => {
@@ -107,4 +118,7 @@ window.addEventListener('COMPLETAR', () => {
 function informacionNavegador() {}
 
 // Función para redireccionar a una URL en una ventana nueva
-function redirect(url) {}
+function redirect(url) {
+
+  window.open
+}
