@@ -82,7 +82,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   btnRedirection.addEventListener("click", function () {
     // avisar en el párrafo redirection que se va a redireccionar a www.educa.jcyl.es en 5 segundos
+    redirection.textContent = "Serás redirigido a www.educa.jcyl.es en 5 segundos...";
     // Redireccionar a la página de la Junta de Castilla y León en una nueva pestaña en 5 segundos
+    setTimeout(() => {
+      window.location.href = "https://www.educa.jcyl.es";
+    }, 5000);
+    
   });
 
   updateScreenSize();
@@ -118,7 +123,4 @@ window.addEventListener('load', (event) => {
 function informacionNavegador() {}
 
 // Función para redireccionar a una URL en una ventana nueva
-function redirect(url) {
-
-  window.open
-}
+function redirect(url) {}
